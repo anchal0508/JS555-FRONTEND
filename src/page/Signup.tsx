@@ -4,17 +4,39 @@ import { Loader2 } from "lucide-react";
 import { useSignupHook } from "../hooks/useSignupHook";
 
 const Signup: React.FC = () => {
-  const { handleSubmit, onSubmit, apiError, errors, register, isSubmitting, inputFields } =
-    useSignupHook();
+  const {
+    handleSubmit,
+    onSubmit,
+    apiError,
+    errors,
+    register,
+    isSubmitting,
+    inputFields,
+  } = useSignupHook();
   return (
-    <div className="w-full flex flex-col items-center justify-center px-4 py-6 md:py-12 ">
+   <div
+      className="
+      flex flex-col items-center justify-center py-6   
+    md:py-12
+     "
+    >
       <div>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="border px-2 py-2 rounded-2xl shadow-2xl shadow-blue-400 backdrop-blur-sm mb-2"
+          className="
+          border   py-2 px-2 rounded-2xl shadow-2xl shadow-blue-400 backdrop-blur-sm mb-2
+          md:w-100 md:px-6 md:py-4
+          lg:w-100 lg:px-6 lg:py-4
+          "
         >
-          <h2 className="text-3xl text-center font-bold">Join us Today</h2>
-          <div className="text-center text-red-800  min-h-7 w-80 font-semibold">
+          <h2 className="
+          text-3xl text-center font-bold
+          ">Join us Today</h2>
+          <div
+            className="
+          text-center text-red-800  min-h-7 w-full font-semibold
+          "
+          >
             {apiError && (
               <div className="rounded-2xl bg-amber-100/50">{apiError}</div>
             )}
@@ -33,9 +55,11 @@ const Signup: React.FC = () => {
                       type={fields.inputType}
                       {...register(fields.nameId)}
                       placeholder={fields.placeHolder}
-                      className="rounded-lg bg-slate-700 border w-full border-slate-600 px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                      className="
+                      rounded-lg bg-slate-700 border w-full border-slate-600 px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500
+                      "
                     />
-                    <div className="text-center text-red-800  min-h-7 w-80 font-semibold">
+                    <div className="text-center text-red-800  min-h-7 w-full font-semibold">
                       {fieldError && (
                         <p className="rounded-2xl bg-amber-100/50">
                           {fieldError.message}
