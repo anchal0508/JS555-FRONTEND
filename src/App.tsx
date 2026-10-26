@@ -6,7 +6,7 @@ function App() {
   return (
     <div
       className="
-    bg-[url('./Images/bg-wall.jpg')] bg-cover bg-center bg-no-repeat 
+    bg-[url('./Images/bg-wall.jpg')] bg-cover bg-center bg-no-repeat bg-fixed
         w-full  text-slate-100 
         grid grid-rows-[auto_1fr_auto] 
         "
