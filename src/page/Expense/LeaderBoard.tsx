@@ -1,5 +1,5 @@
 import { LucideFileText, LucideSearch } from "lucide-react";
-import React, { useState } from "react";
+import React from "react";
 import { useExpense } from "../../context/expenseContext";
 import { useExpenseHook } from "../../hooks/useExpenseHook";
 import { Link } from "react-router-dom";
@@ -9,7 +9,7 @@ const LeaderBoard: React.FC = () => {
   const { setLimit, setSearch } = useExpense();
   const { topLeaders } = useExpenseHook();
   const leaderList = topLeaders || [];
-  const [isPremium, setIsPremium] = useState<boolean>(true);
+  // const [isPremium, setIsPremium] = useState<boolean>(true);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTimeout(() => {
@@ -25,7 +25,7 @@ const LeaderBoard: React.FC = () => {
 
   return (
     <div className="h-full">
-      {isPremium ? (
+      {true ? (
         <div className="flex justify-between h-full flex-col items-center">
           <table className=" w-full sm:w-120 text-center border ">
             <caption className="caption-top py-4 text-2xl font-semibold">
