@@ -20,29 +20,33 @@ export const useExpenseHook = () => {
             }
         });
 
-        return response.data.expensesData;
+        return response.data?.expensesData || {};
         
     } 
     
-    const { data: allExpenses = [], isLoading, error } = useQuery({
+    const { data: expensesData = {}, isLoading, error } = useQuery({
 
         queryKey: ['expenses', currentPage, limit, search],
 
         queryFn: fetchAllExpenses,
 
         staleTime: 5 * 60 * 1000,
+        retry: false,
 
 
     });
 
     return {
-        allExpenses,
-        totalPages: allExpenses.totalPages,
-        totalRows: allExpenses.totalRows,
-        totalIncom: allExpenses.totalIncome,
-        totalExpense: allExpenses.totalExpense,
+        expenses: expensesData.expenses || [],
+        allExpenses: expensesData,
+        totalPages: expensesData.totalPages || 1,
+        totalRows: expensesData.totalRows || 0,
+
+        totalIncom: expensesData.totalIncome || 0,
+        totalExpense: expensesData.totalExpense || 0,
+
         isLoading,
-        topLeaders: allExpenses.topLeaders,
+        topLeaders: expensesData.topLeaders || [],
         error
     };
 }
