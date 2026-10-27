@@ -16,7 +16,7 @@ const LeaderBoard: React.FC = () => {
       setSearch(e.target.value);
     }, 1000);
   };
-setIsPremium(true);
+// setIsPremium(true);
   const handleLimitChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setLimit(Number(e.target.value));
   };
