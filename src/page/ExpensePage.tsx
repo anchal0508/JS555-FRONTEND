@@ -2,7 +2,6 @@ import type React from "react";
 import ExpForm from "./Expense/ExpForm";
 import Paggination from "./Expense/Paggination";
 import LeaderBoard from "./Expense/LeaderBoard";
-import MainExpTable from "./Expense/MainExpTable";
 import ExpenseSummry from "./Expense/ExpenseSummry";
 import { ExpenseProvider } from "../context/expenseContext";
 
