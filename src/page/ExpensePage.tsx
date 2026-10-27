@@ -4,6 +4,7 @@ import Paggination from "./Expense/Paggination";
 import ExpenseSummry from "./Expense/ExpenseSummry";
 import { ExpenseProvider } from "../context/expenseContext";
 import MainExpTable from "./Expense/MainExpTable";
+import LeaderBoard from "./Expense/LeaderBoard";
 
 const ExpensePage: React.FC = () => {
   return (
