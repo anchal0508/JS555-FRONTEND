@@ -7,17 +7,18 @@ import PremiumButton from "./PremiumButton";
 
 const LeaderBoard: React.FC = () => {
   const { setLimit, setSearch } = useExpense();
-  const { topLeaders } = useExpenseHook();
+  const { topLeaders, isLoading } = useExpenseHook();
   const leaderList = topLeaders || [];
   // const [isPremium, setIsPremium] = useState<boolean>(true);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
     setTimeout(() => {
-      setSearch(e.target.value);
+      setSearch(value);
     }, 1000);
   };
 
-// setIsPremium(true);
+  // setIsPremium(true);
 
   const handleLimitChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setLimit(Number(e.target.value));
@@ -39,13 +40,22 @@ const LeaderBoard: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {leaderList &&
-                leaderList.map((data: any, index: any) => (
-                  <tr key={index}>
-                    <th>{data.user.name}</th>
-                    <th>{data.totalAmount}</th>
+              {isLoading ? (
+                <tr>
+                  <td colSpan={2} className="py-4 text-gray-500">Loading Leaders...</td>
+                </tr>
+              ) : leaderList.length > 0 ? (
+                leaderList.map((data: any, index: number) => (
+                  <tr key={index} className="border-b hover:bg-slate-50">
+                    <td className="px-4 py-2 font-medium">{data?.user?.name || "Anonymous User"}</td>
+                    <td className="px-4 py-2 text-amber-600">{data?.totalAmount || 0}</td>
                   </tr>
-                ))}
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={2} className="py-4 text-gray-500">No leaders found</td>
+                </tr>
+              )}
             </tbody>
           </table>
 
