@@ -25,11 +25,11 @@ const ExpensePage: React.FC = () => {
           <ExpenseSummry />
         </div>
         <div className="col-span-1 row-span-1 border rounded-xl p-2 backdrop-blur-sm ">
-          <LeaderBoard />
+          {/* <LeaderBoard /> */}
         </div>
 
         <div className="col-span-1 lg:col-span-2 border rounded-xl p-2 backdrop-blur-sm">
-          <MainExpTable />
+         f {/* <MainExpTable /> */}
         </div>
 
         <div className="col-span-1 lg:col-span-2 border rounded-xl p-2 backdrop-blur-sm">
