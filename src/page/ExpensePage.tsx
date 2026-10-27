@@ -29,7 +29,7 @@ const ExpensePage: React.FC = () => {
         </div>
 
         <div className="col-span-1 lg:col-span-2 border rounded-xl p-2 backdrop-blur-sm">
-          <MainExpTable />
+         f {/* <MainExpTable /> */}
         </div>
 
         <div className="col-span-1 lg:col-span-2 border rounded-xl p-2 backdrop-blur-sm">
