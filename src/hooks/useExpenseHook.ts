@@ -37,16 +37,16 @@ export const useExpenseHook = () => {
     });
 
     return {
-        expenses: expensesData.expenses || [],
+        expenses: expensesData?.expenses || [],
         allExpenses: expensesData,
-        totalPages: expensesData.totalPages || 1,
-        totalRows: expensesData.totalRows || 0,
+        totalPages: expensesData?.totalPages || 1,
+        totalRows: expensesData?.totalRows || 0,
 
-        totalIncom: expensesData.totalIncome || 0,
-        totalExpense: expensesData.totalExpense || 0,
+        totalIncom: expensesData?.totalIncome || 0,
+        totalExpense: expensesData?.totalExpense || 0,
 
         isLoading,
-        topLeaders: expensesData.topLeaders || [],
+        topLeaders: expensesData?.topLeaders || [],
         error
     };
 }
