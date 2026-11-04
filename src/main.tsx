@@ -1,3 +1,6 @@
+// 5
+// Shree
+
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
@@ -5,7 +8,6 @@ import "./main.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./page/Login.tsx";
 import Signup from "./page/Signup.tsx";
-import Dashboard from "./page/Dashboard.tsx";
 import ForgotPassword from "./page/ForgotPassword.tsx";
 import UserInfo from "./page/UserInfo.tsx";
 import ProtectedRoutes from "./routes/ProtectedRoutes.tsx";
@@ -14,6 +16,7 @@ import OpenRoutes from "./routes/OpenRoutes.tsx";
 import Portfolio from "./page/Portfolio.tsx";
 import Gallery from "./page/Gallery.tsx";
 import ExpensePage from "./page/ExpensePage.tsx";
+import Reports from "./page/Reports.tsx";
 
 const queryClient = new QueryClient();
 
@@ -27,7 +30,7 @@ createRoot(document.getElementById("root")!).render(
             <Route element={<ProtectedRoutes />}>
             
               <Route path="/" element={<ExpensePage />} />
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/report" element={<Reports />} />
               <Route path="/user-profile" element={<UserInfo />} />
             </Route>
             <Route element={<OpenRoutes />}>

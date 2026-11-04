@@ -21,9 +21,9 @@ export const useExpenseHook = () => {
         });
 
         return response.data?.expensesData || {};
-        
-    } 
-    
+
+    }
+
     const { data: expensesData = {}, isLoading, error } = useQuery({
 
         queryKey: ['expenses', currentPage, limit, search],
@@ -51,3 +51,26 @@ export const useExpenseHook = () => {
     };
 }
 
+
+
+export const useCategoryExpenseHook = () => {
+    const fetchCatExpData = async () => {
+        const response = await API.get('/expenses/get-cat-report');
+        console.log("-----------",response?.data?.expensesData?.monthlyData || []);
+        return response?.data?.expensesData || [];
+    }
+
+    const { data: catExp = {}, isLoading, error } = useQuery({
+        queryKey: ['catExpenseData'],
+        queryFn: fetchCatExpData,
+        staleTime: 5 * 60 * 1000,
+        retry: false
+    });
+
+    return {
+        error,
+        isLoading,
+        monthlyData: catExp
+    }
+
+}

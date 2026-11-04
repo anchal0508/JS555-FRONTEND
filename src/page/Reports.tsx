@@ -1,10 +1,12 @@
 import { LucideDownload, LucideRotateCcw } from "lucide-react";
 import type React from "react";
 import { useState } from "react";
+import { useCategoryExpenseHook } from "../hooks/useExpenseHook";
 
-const Dashboard: React.FC = () => {
+const Reports: React.FC = () => {
   const [display, setDisplay] = useState<number>(1);
-
+  const { monthlyData } = useCategoryExpenseHook();
+  console.log(monthlyData.toString());
   const requiredExp = {
     1: "Daily Basis",
     2: "Monthly",
@@ -76,6 +78,8 @@ const Dashboard: React.FC = () => {
           <h2 className="text-center text-3xl font-semibold lg:pt-15">
             {requiredExp[display as keyof typeof requiredExp]} Expenses
           </h2>
+          {/* {monthlyData} */}
+
           <br />
           <hr />
           <table className="w-full lg:max-w-300 border">
@@ -117,4 +121,4 @@ const Dashboard: React.FC = () => {
   );
 };
 
-export default Dashboard;
+export default Reports;
