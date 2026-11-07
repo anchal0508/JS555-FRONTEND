@@ -1,5 +1,5 @@
 import { Download } from "lucide-react";
-import React, { useState } from "react";  
+import React, { useState } from "react";
 import { FaGithub } from "react-icons/fa";
 
 const ProfileInfo: React.FC = () => {
@@ -66,13 +66,15 @@ const ProfileInfo: React.FC = () => {
             Resume
           </button>
 
-          <button
-            className="flex gap-2 border py-2 px-2 rounded-lg 
+          <a href="https://github.com/anchal0508/JS555-FRONTEND">
+            <button
+              className="flex gap-2 border py-2 px-2 rounded-lg 
         transition active:translate-y-1 bg-orange-700 ring-0 items-center"
-          >
-            <FaGithub />
-            Github Repo
-          </button>
+            >
+              <FaGithub />
+              Github Repo
+            </button>
+          </a>
         </div>
       </div>
     </div>
