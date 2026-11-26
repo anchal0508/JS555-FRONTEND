@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
   const navlinks = [
     { title: "Portfolio", path: "/profile" },
     { title: "Expense", path: "/" },
-    { title: "Report", path: "/dashboard" },
+    { title: "Report", path: "/report" },
     { title: "LogIn", path: "/login" },
     { title: "SignUp", path: "/signup" },
     { title: "Gallery", path: "/gallery" },

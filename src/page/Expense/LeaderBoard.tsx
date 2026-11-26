@@ -72,7 +72,7 @@ const LeaderBoard: React.FC = () => {
 
               <LucideSearch className="  m-1 " />
             </div>
-            <Link to="/dashboard">
+            <Link to="/report">
               <button className=" cursor-pointer transform active:translate-y-1 py-1  bg-linear-to-tr from-blue-900/50 to-blue-700/50 shadow-xl hover:shadow-amber-200/20  w-80 rounded-2xl flex justify-center gap-5">
                 <span>Download Expense Report</span>
                 <span>
