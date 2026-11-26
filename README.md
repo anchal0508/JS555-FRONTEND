@@ -2,7 +2,7 @@
 
 Frontend application built with React, TypeScript, and Vite. I built this project to handle real-world workflows like AI-assisted insights, payment processing, media uploads, and strict client-side form validation.
 
-Live Demo: https://abcrob.in
+Live Demo: https://project.abcrob.in/profile
 
 ## What it does & Technical Decisions
 
