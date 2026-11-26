@@ -57,7 +57,7 @@ const Navbar: React.FC = () => {
   const conditionallinks: NavLinkItem[] = isLoggedIn
     ? [
         { title: "Expense", path: "/" },
-        { title: "Report", path: "/dashboard" },
+        { title: "Report", path: "/report" },
         {
           title: (
             <span className="flex flex-col items-center">
