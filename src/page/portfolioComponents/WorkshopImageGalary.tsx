@@ -63,7 +63,7 @@ const WorkshopImageGalary: React.FC = () => {
   return (
     <div>
       <h2 className="text-3xl mb-2 font-semibold text-cyan-400">
-        Workshop Image Galary
+        Embedded Systems & IoT Workshops Across India
       </h2>
       <div className="grid grid-cols-2 gap-3 my-5 lg:grid-cols-3 lg:w-3/5 lg:ml-auto lg:mr-auto md:w-4/5 md:ml-auto md:mr-auto">
         

@@ -66,7 +66,11 @@ const ProfileInfo: React.FC = () => {
             Resume
           </button>
 
-          <a href="https://github.com/anchal0508/JS555-FRONTEND">
+          <a
+            href="https://github.com/anchal0508/JS555-FRONTEND"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <button
               className="flex gap-2 border py-2 px-2 rounded-lg 
         transition active:translate-y-1 bg-orange-700 ring-0 items-center"

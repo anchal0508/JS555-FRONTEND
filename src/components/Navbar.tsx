@@ -69,7 +69,7 @@ const Navbar: React.FC = () => {
         },
       ]
     : [
-        { title: "LogIn", path: "/login" },
+        { title: "Expense Tracker", path: "/login" },
         { title: "SignUp", path: "/signup" },
       ];
 

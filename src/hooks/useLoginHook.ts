@@ -92,6 +92,7 @@ export const useLoginHook = () => {
       return response.data;
     },
     onSuccess: (serverData) => {
+      localStorage.setItem("hasSession", "true"); // To remember that if user is loggedin
       queryClient.setQueryData(['authUser'], serverData);
       reset();
       navigate('/');

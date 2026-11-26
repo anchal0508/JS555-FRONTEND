@@ -10,6 +10,7 @@ const fetchCurrentUser = async () => {
 };
 const ProtectedRoutes: React.FC = () => {
   const location = useLocation();
+  const hasSession = localStorage.getItem("hasSession") === "true";
   const {
     data: user,
     isLoading,
@@ -17,7 +18,7 @@ const ProtectedRoutes: React.FC = () => {
   } = useQuery({
     queryKey: ["authUser"],
     queryFn: fetchCurrentUser,
-
+    enabled: hasSession,
     // saves bandwidth and server load
     staleTime: 16 * 60 * 1000, // for 15 minutes data will be refreshhhhh...
     gcTime: 30 * 60 * 1000, // Keep data in the memory for 30 mins
@@ -25,6 +26,9 @@ const ProtectedRoutes: React.FC = () => {
     refetchOnReconnect: false, // do not call api on reconnect Internet
     retry: false, // Do not call API (retry) again & again , if auth failed
   });
+  if(!hasSession){
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
   if (isLoading) {
     return (
       <div className="w-full h-screen flex flex-col items-center justify-center bg-slate-900 text-white">
@@ -37,6 +41,7 @@ const ProtectedRoutes: React.FC = () => {
   }
 
   if (isError || !user) {
+    localStorage.removeItem("hasSession");
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
