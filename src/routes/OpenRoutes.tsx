@@ -11,13 +11,24 @@ const fetchCurrentUser = async () => {
 
 const OpenRoutes: React.FC = () => {
     const location = useLocation();
+    const hasSession = localStorage.getItem("hasSession") === "true";
   const {
     data: user,
     isLoading,
+    isError
   } = useQuery({
     queryKey: ["authUser"],
     queryFn: fetchCurrentUser,
+    enabled: hasSession,
+    staleTime: 16 * 60 * 1000,
+    gcTime: 30 * 60 * 1000,
+    refetchOnWindowFocus: false,
+    retry: false,
   });
+
+  if (!hasSession) {
+    return <Outlet />;
+  }
 
   if (isLoading) {
     return (
@@ -29,10 +40,11 @@ const OpenRoutes: React.FC = () => {
       </div>
     );
   }
-  if (user) {
-    return <Navigate to='/' state={{from: location}} replace={true} />
+   if (isError || !user) {
+    localStorage.removeItem("hasSession");
+    return <Outlet />;
   }
-   return <Outlet />
+    return <Navigate to='/' state={{from: location}} replace={true} />
 
 };
 
