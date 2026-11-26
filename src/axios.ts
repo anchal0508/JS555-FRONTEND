@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const BASEURL = "https://js555-backend5.onrender.com/api";
+// const BASEURL = "https://js555-backend5.onrender.com/api";
+const BASEURL = "https://api.abcrob.in/api"; // now, to resolve third party cookies issue made same domain
 // const BASEURL = 'http://localhost:3000/api';
 const API = axios.create({
     baseURL: BASEURL,
