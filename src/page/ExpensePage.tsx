@@ -9,7 +9,6 @@ import LeaderBoard from "./Expense/LeaderBoard";
 const ExpensePage: React.FC = () => {
   return (
     <div className=" min-h-screen w-full flex items-center justify-center p-1 sm:p-6 md:p-8">
-      <ExpenseProvider>
       <div
         className="
       grid grid-cols-1 lg:grid-cols-2 gap-4
@@ -36,7 +35,6 @@ const ExpensePage: React.FC = () => {
           <Paggination />
         </div>
       </div>
-      </ExpenseProvider>
     </div>
   );
 };

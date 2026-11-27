@@ -25,7 +25,7 @@ const ExpenseSummry: React.FC = () => {
           Total Expense: <b>{totalExpense}</b>
         </span>
         <span className="border px-4 rounded-xl">
-          Total Income: <b>{totalIncom}</b>
+          Available Balance: <b>{totalIncom}</b>
         </span>
       </div>
     </div>

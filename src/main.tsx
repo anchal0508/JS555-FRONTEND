@@ -17,18 +17,25 @@ import Portfolio from "./page/Portfolio.tsx";
 import Gallery from "./page/Gallery.tsx";
 import ExpensePage from "./page/ExpensePage.tsx";
 import Reports from "./page/Reports.tsx";
+import Skills from "./page/portfolioComponents/Skills.tsx";
+import { ExpenseProvider } from "./context/expenseContext.tsx";
+import SkillSet from "./page/SkillSet.tsx";
 
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      
       <BrowserRouter>
         <Routes>
           <Route element={<App />}>
-            <Route element={<ProtectedRoutes />}>
-            
+            <Route
+              element={
+                <ExpenseProvider>
+                  <ProtectedRoutes />
+                </ExpenseProvider>
+              }
+            >
               <Route path="/" element={<ExpensePage />} />
               <Route path="/report" element={<Reports />} />
               <Route path="/user-profile" element={<UserInfo />} />
@@ -38,9 +45,9 @@ createRoot(document.getElementById("root")!).render(
               <Route path="/signup" element={<Signup />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
             </Route>
-              <Route path="/profile" element={<Portfolio />} />
-              <Route path="/gallery" element={<Gallery />} />
-
+            <Route path="/profile" element={<Portfolio />} />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/skills" element={<SkillSet />} />
           </Route>
         </Routes>
       </BrowserRouter>

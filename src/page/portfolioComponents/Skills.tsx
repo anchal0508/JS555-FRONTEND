@@ -1,4 +1,5 @@
 import type React from "react";
+import { Link } from "react-router-dom";
 
 const Skills: React.FC = () => {
   const boxStyle =
@@ -17,7 +18,7 @@ const Skills: React.FC = () => {
         <div className={`${boxStyle}`}> C++</div>
         <div className={`${boxStyle}`}> Embedded Systems & IoT</div>
         <div className={`${boxStyle}`}> PCB Designing</div>
-        <div className={`${boxStyle} bg-amber-300/20 text-cyan-600`} > View more...</div>
+        <Link to="/skills" ><div className={`${boxStyle} bg-amber-300/20 text-cyan-600 cursor-pointer`} >  View more...</div></Link>
       </div>
     </div>
   );

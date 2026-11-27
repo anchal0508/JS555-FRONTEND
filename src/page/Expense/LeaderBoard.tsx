@@ -8,6 +8,7 @@ import PremiumButton from "./PremiumButton";
 const LeaderBoard: React.FC = () => {
   const { setLimit, setSearch } = useExpense();
   const { topLeaders, isLoading } = useExpenseHook();
+  // console.log(topLeaders , "-------------------");
   const leaderList = topLeaders || [];
   // const [isPremium, setIsPremium] = useState<boolean>(true);
 
@@ -46,8 +47,8 @@ const LeaderBoard: React.FC = () => {
                 </tr>
               ) : leaderList.length > 0 ? (
                 leaderList.map((data: any, index: number) => (
-                  <tr key={index} className="border-b hover:bg-slate-50">
-                    <td className="px-4 py-2 font-medium">{data?.user?.name || "Anonymous User"}</td>
+                  <tr key={index} className="border-b hover:bg-slate-50 hover:text-blue-950">
+                    <td className="px-4 py-2 font-medium">{data?.User?.name || "Anonymous User"}</td>
                     <td className="px-4 py-2 text-amber-600">{data?.totalAmount || 0}</td>
                   </tr>
                 ))

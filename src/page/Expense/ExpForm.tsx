@@ -16,6 +16,9 @@ const ExpForm: React.FC = () => {
   const {
     register,
     handleSubmit,
+    setValue,
+    watch,
+    clearErrors,
     formState: { errors },
     reset,
   } = useForm<ExpenseData>({
@@ -30,6 +33,47 @@ const ExpForm: React.FC = () => {
     },
   });
 
+  const infoOfValue = watch("infoOf");
+
+  // 1. AI Category Prediction Mutation
+  const predictMutation = useMutation({
+    mutationFn: async (description: string) => {
+      const response = await API.post("/expenses/predict-category", {
+        description,
+      });
+      return response.data;
+    },
+    onSuccess: (data) => {
+      if (data?.category) {
+        setValue("category", data.category, { shouldValidate: true });
+      } else {
+        setValue("category", "");
+      }
+    },
+    onError: () => {
+      // Agar API fail ho toh box khali kar dein taaki user manually type kar sake
+      setValue("category", "");
+    },
+  });
+
+  // 2. Description se cursor hatate hi (onBlur) trigger hone wala function
+  const handleDescriptionBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const desc = e.target.value.trim();
+    if (!desc || desc.length < 2) return;
+
+    // Agar SALARY select hai toh AI call ki zaroorat nahi
+    if (infoOfValue === "SALARY") {
+      setValue("category", "Salary", { shouldValidate: true });
+      return;
+    }
+
+    // Category field mein loading text dikhayein aur error hatayein
+    clearErrors("category");
+    setValue("category", "✨ Predicting category...");
+    predictMutation.mutate(desc);
+  };
+
+  // 3. Main Add Expense Mutation
   const expenseMutation = useMutation({
     mutationFn: async (data: ExpenseData) => {
       const response = await API.post("/expenses/addexp", {
@@ -46,12 +90,10 @@ const ExpForm: React.FC = () => {
       setCurrentPage(1);
       reset();
       setFormKey((prev) => prev + 1);
-      // When new entry will be added then will  call api again to fetch exp data.
       queryClient.invalidateQueries({ queryKey: ["expenses"] });
     },
   });
 
-  // API Error logic based on mutation state
   let apiError: string | null = null;
   if (expenseMutation.error) {
     apiError =
@@ -60,6 +102,8 @@ const ExpForm: React.FC = () => {
   }
 
   const onSubmit = (data: ExpenseData) => {
+    // Jab tak prediction chal rahi ho tab tak submit na hone dein
+    if (predictMutation.isPending) return;
     expenseMutation.mutate(data);
   };
 
@@ -73,7 +117,7 @@ const ExpForm: React.FC = () => {
       fieldName: "Description",
       inputType: "text",
       nameId: "description",
-      placeHolder: "Description",
+      placeHolder: "Description (e.g. Petrol, Zomato)",
     },
     {
       fieldName: "Amount",
@@ -127,15 +171,40 @@ const ExpForm: React.FC = () => {
 
             {inputFields.map((fields, index) => {
               const fieldError = errors[fields.nameId];
+              const isCategoryField = fields.nameId === "category";
+              const isDescriptionField = fields.nameId === "description";
+
+              // Register options ke saath description par onBlur attach karein
+              const fieldRegister = register(fields.nameId, {
+                ...(isDescriptionField && {
+                  onBlur: handleDescriptionBlur,
+                }),
+              });
+
               return (
                 <div key={index} className="w-100 sm:w-full ">
                   <label className="block mb-0.5">{fields.fieldName}</label>
-                  <input
-                    type={fields.inputType}
-                    {...register(fields.nameId)}
-                    placeholder={fields.placeHolder}
-                    className="rounded-lg bg-slate-700 border border-slate-600 px-4 py-0.5 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full"
-                  />
+                  <div className="relative">
+                    <input
+                      type={fields.inputType}
+                      {...fieldRegister}
+                      disabled={isCategoryField && predictMutation.isPending}
+                      placeholder={fields.placeHolder}
+                      className={`rounded-lg bg-slate-700 border border-slate-600 px-4 py-0.5 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full ${
+                        isCategoryField && predictMutation.isPending
+                          ? "opacity-75 italic text-indigo-300"
+                          : ""
+                      }`}
+                    />
+                    {/* Category box ke andar right side mein spinner */}
+                    {isCategoryField && predictMutation.isPending && (
+                      <Loader2
+                        className="animate-spin absolute right-3 top-1.5 text-indigo-400"
+                        size={16}
+                      />
+                    )}
+                  </div>
+
                   <div className="text-center text-red-800 min-h-7 w-full font-semibold">
                     {fieldError && (
                       <p className="rounded-2xl bg-amber-100/50">
@@ -149,7 +218,7 @@ const ExpForm: React.FC = () => {
 
             <button
               type="submit"
-              disabled={expenseMutation.isPending} // useMutation ki isPending state ka use kiya
+              disabled={expenseMutation.isPending || predictMutation.isPending}
               className="btn-primary"
             >
               {expenseMutation.isPending ? (

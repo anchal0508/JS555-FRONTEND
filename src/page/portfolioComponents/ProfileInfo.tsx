@@ -1,6 +1,7 @@
 import { Download } from "lucide-react";
 import React, { useState } from "react";
 import { FaGithub } from "react-icons/fa";
+import resume from '../../Images/Anchal_Koshta_FullStack.pdf';
 
 const ProfileInfo: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -54,17 +55,22 @@ const ProfileInfo: React.FC = () => {
         >
           Now transitioning into Full-Stack Web Development. I specialize in
           building modern, scalable apps using React.js & Express.js and am
-          actively seeking an internship to contribute and grow with an IT team.
+          actively seeking opportunities to contribute and grow with an IT team.
         </div>
 
         <div className="w-full flex justify-evenly mt-2 items-center">
-          <button
-            className="flex gap-2 border py-2 px-2 rounded-lg 
-        transition active:translate-y-1 bg-blue-700  ring-0"
+          <a
+            href={resume}
+            download="Anchal_Koshta_(FullStack Developer).pdf"
           >
-            <Download />
-            Resume
-          </button>
+            <button
+              className="flex gap-2 border py-2 px-2 rounded-lg cursor-pointer
+        transition active:translate-y-1 bg-blue-700  ring-0"
+            >
+              <Download />
+              Resume
+            </button>
+          </a>
 
           <a
             href="https://github.com/anchal0508/JS555-FRONTEND"
@@ -72,7 +78,7 @@ const ProfileInfo: React.FC = () => {
             rel="noopener noreferrer"
           >
             <button
-              className="flex gap-2 border py-2 px-2 rounded-lg 
+              className="flex gap-2 border py-2 px-2 rounded-lg cursor-pointer
         transition active:translate-y-1 bg-orange-700 ring-0 items-center"
             >
               <FaGithub />

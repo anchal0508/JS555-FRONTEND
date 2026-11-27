@@ -25,6 +25,7 @@ export const useExpenseHook = () => {
     }
 
     const { data: expensesData = {}, isLoading, error } = useQuery({
+        
 
         queryKey: ['expenses', currentPage, limit, search],
 
