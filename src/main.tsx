@@ -17,7 +17,6 @@ import Portfolio from "./page/Portfolio.tsx";
 import Gallery from "./page/Gallery.tsx";
 import ExpensePage from "./page/ExpensePage.tsx";
 import Reports from "./page/Reports.tsx";
-import Skills from "./page/portfolioComponents/Skills.tsx";
 import { ExpenseProvider } from "./context/expenseContext.tsx";
 import SkillSet from "./page/SkillSet.tsx";
 
